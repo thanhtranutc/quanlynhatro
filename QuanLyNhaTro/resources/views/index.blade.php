@@ -1,3 +1,7 @@
+<?php
+
+use Illuminate\Support\Facades\Session; ?>
+<?php $user_name = Session::get('user_name'); ?>
 <!DOCTYPE html>
 <html>
 
@@ -15,16 +19,21 @@
         margin: 10px;
         float: right;
     }
-    .menu-item.first{
+
+    .menu-item.first {
         text-align: right;
         width: 50px !important;
+    }
+
+    .main {
+        display: block;
     }
 </style>
 
 <body>
 
     <div class="sidenav">
-        <a href="#">Quản lý tòa nhà</a>
+        <a href="{{URL::to('/list-apartment')}}">Quản lý tòa nhà</a>
         <a href="#">Quản lý phòng trọ</a>
         <a href="#">Quản lý tiền trọ hàng tháng</a>
         <a href="#">Thống kê</a>
@@ -39,8 +48,11 @@
             </div>
 
         </div>
-        @yield('content')
+        <div class="block-content">
+            @yield('content')
+        </div>
     </div>
+
 
 </body>
 

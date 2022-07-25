@@ -25,3 +25,7 @@ Route::get('/forget-password','HomeController@showResetPasswordPage');
 Route::get('/reset-password/{token}','HomeController@showFormReset')->name('reset.password');
 Route::post('/forgetpassword','HomeController@submitForgetPassword');
 Route::post('/update-password','HomeController@updatePassword');
+
+Route::group(['midderware'=>['auth']],function(){
+    Route::get('/list-apartment','ApartmentController@listApartment');
+  });

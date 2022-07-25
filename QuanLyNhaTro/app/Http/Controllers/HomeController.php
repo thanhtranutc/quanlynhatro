@@ -35,6 +35,7 @@ class HomeController extends Controller
 
         if (Auth::attempt($data)) {
             $userName = Auth::user()->name;
+            Session::put('user_name',Auth::user()->name);
             return view('index', ['user_name' => $userName]);
         } else {
             return Redirect()->back();
