@@ -50,23 +50,18 @@ class HomeController extends Controller
         $dataPost = $request->validate([
             'name' => 'required',
             'password' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users',
         ]);
-        $checkUser = $this->userRepository->findByEmail($dataPost['email']);
-        if (empty($checkUser)) {
-            $newUser = [
-                'name' =>  $dataPost['name'],
-                'email' =>  $dataPost['email'],
-                'password' =>  bcrypt($dataPost['name']),
-            ];
-            $this->userRepository->create($newUser);
-            $user = $this->userRepository->findByEmail($dataPost['email']);
-            Auth::login($user);
-            return view('index', ['user_name' => $dataPost['name']]);
-        } else {
-            Session::put('message', 'Email này đã có người đăng ký!');
-            return redirect()->back();
-        }
+
+        $newUser = [
+            'name' =>  $dataPost['name'],
+            'email' =>  $dataPost['email'],
+            'password' =>  bcrypt($dataPost['name']),
+        ];
+        $this->userRepository->create($newUser);
+        $user = $this->userRepository->findByEmail($dataPost['email']);
+        Auth::login($user);
+        return view('index', ['user_name' => $dataPost['name']]);
     }
 
     public function showResetPasswordPage()
@@ -107,9 +102,8 @@ class HomeController extends Controller
         $passwordNew = [
             'password' => Hash::make($dataPost['password']),
         ];
-        $this->userRepository->update($dataPost['email'],$passwordNew);
-        DB::table('password_resets')->where(['email'=> $dataPost['email']])->delete();
-        return view('auth.login',['message'=>'Đổi mật khẩu thành công']);
-
+        $this->userRepository->update($dataPost['email'], $passwordNew);
+        DB::table('password_resets')->where(['email' => $dataPost['email']])->delete();
+        return view('auth.login', ['message' => 'Đổi mật khẩu thành công']);
     }
 }

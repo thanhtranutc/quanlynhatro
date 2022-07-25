@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/','HomeController@loginPage');
-
 Route::post('/login','HomeController@login');
 Route::get('/logout','HomeController@logout');
 Route::post('/register','HomeController@register');

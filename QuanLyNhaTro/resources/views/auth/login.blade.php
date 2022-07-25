@@ -22,8 +22,23 @@ use Illuminate\Support\Facades\Session; ?>
     <form class="register-form" action="{{URL::to('/register')}}" method="post">
         @csrf
         <input type="text" name="name" placeholder="name" />
+        @error('name')
+        <ul>
+            <li style="color:red;">{{$message}}</li>
+        </ul>
+        @enderror
         <input type="password" name="password" placeholder="password" />
+        @error('password')
+        <ul>
+            <li style="color:red;">{{$message}}</li>
+        </ul>
+        @enderror
         <input type="text" name="email" placeholder="email address" />
+        @error('email')
+        <ul>
+            <li style="color:red;">{{$message}}</li>
+        </ul>
+        @enderror
         <button type="submit">create</button>
         <p class="message">Already registered? <a href="#">Sign In</a></p>
     </form>
