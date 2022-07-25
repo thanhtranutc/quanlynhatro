@@ -13,6 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/','HomeController@loginPage');
+Route::post('/login','HomeController@login');
+Route::get('/logout','HomeController@logout');
+Route::post('/register','HomeController@register');
+Route::get('/forget-password','HomeController@showResetPasswordPage');
+Route::get('/reset-password/{token}','HomeController@showFormReset')->name('reset.password');
+Route::post('/forgetpassword','HomeController@submitForgetPassword');
+Route::post('/update-password','HomeController@updatePassword');
