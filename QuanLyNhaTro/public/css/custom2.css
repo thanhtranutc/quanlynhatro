@@ -1,0 +1,109 @@
+.btn-form {
+    background-color: aquamarine;
+    border: 0.5px solid;
+    text-decoration: none;
+    border-radius: 3px;
+    margin-left: 10px;
+}
+
+#apartment {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 90%;
+}
+
+#apartment td,
+#apartment th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#apartment tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#apartment tr:hover {
+    background-color: #ddd;
+}
+
+#apartment th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+}
+
+.menu {
+    display: block;
+}
+
+.menu-item {
+    width: 200px;
+    margin: 10px;
+    float: right;
+}
+
+.menu-item.first {
+    text-align: right;
+    width: 50px !important;
+}
+
+.main {
+    display: block;
+}
+
+.container-btn {
+    margin: auto;
+    width: 50%;
+}
+
+.block-search {
+    margin-bottom: 10px !important;
+}
+
+/* form add apartment */
+
+
+.input-custom {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+
+input[type=submit] {
+    background-color: #04AA6D;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 10% !important;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+.container {
+    width: 90% !important;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+.content-img{
+    width: 50px;
+    height: 50px;
+    margin: auto;
+}
+
+.block-pagination{
+    width: 21%;
+    float: right;
+    padding-top: 20px;
+}

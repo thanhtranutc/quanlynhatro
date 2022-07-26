@@ -1,7 +1,7 @@
 @extends('index')
 
 @section('content')
-<h1>{{__('Danh sách tòa nhà')}}</h1>
+<h1>{{__('Kết quả tìm kiếm')}}</h1>
 <div class="block-search">
   <form action="{{URL::to('/search-apartment')}}" method="post">
     @csrf
@@ -31,17 +31,13 @@
       </td>
       <td>
         <div class="container-btn">
-          <a class="btn-form" href="{{URL::to('/add-apartment')}}">{{__('Thêm')}}</a>
-          <a class="btn-form" href="{{URL::to('/edit-apartment'.$item->id)}}">{{__('Sửa')}}</a>
-          <a class="btn-form delete" onclick="return confirm('Bạn có muốn xóa không')" href="{{URL::to('/delete-apartment'.$item->id)}}">{{__('Xóa')}}</a>
+          <a class="btn-form" href="">{{__('Thêm')}}</a>
+          <a class="btn-form" href="">{{__('Sửa')}}</a>
+          <a class="btn-form" href="">{{__('Xóa')}}</a>
         </div>
       </td>
     </tr>
     @endforeach
   </table>
-
-</div>
-<div class="block-pagination" style="width: 21%;float: right;padding-top: 20px;">
-  {{ $listApartment->links() }}
 </div>
 @endsection

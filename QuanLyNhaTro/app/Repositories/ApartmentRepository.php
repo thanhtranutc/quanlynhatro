@@ -20,7 +20,32 @@ class ApartmentRepository {
 
     public function getAll()
     {
-       return $this->apartment->All();
+       return $this->apartment->orderby('id','asc')->paginate(5);
     }
 
+    public function delete($id)
+    {
+        $result = $this->apartment->find($id);
+        if($result){
+            $result->delete();
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function findById($id)
+    {
+       return $this->apartment->find($id);
+    }
+
+    public function update($id , array $attribute)
+    {
+        $apartment = $this->apartment->find($id);
+        if($apartment){
+           return $apartment->update($attribute);
+        }else{
+            return false;
+        }
+    }
 }

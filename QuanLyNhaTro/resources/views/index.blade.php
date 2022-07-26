@@ -8,27 +8,10 @@ use Illuminate\Support\Facades\Session; ?>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/extend.css">
+    <link rel="stylesheet" type="text/css" href="css/custom2.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="js/extend.js"></script>
 </head>
-<style>
-    .menu {
-        display: block;
-    }
-
-    .menu-item {
-        width: 200px;
-        margin: 10px;
-        float: right;
-    }
-
-    .menu-item.first {
-        text-align: right;
-        width: 50px !important;
-    }
-
-    .main {
-        display: block;
-    }
-</style>
 
 <body>
 
@@ -52,8 +35,6 @@ use Illuminate\Support\Facades\Session; ?>
             @yield('content')
         </div>
     </div>
-
-
 </body>
 
 </html>
