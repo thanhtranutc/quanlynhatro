@@ -39,6 +39,11 @@ class ApartmentRepository {
        return $this->apartment->find($id);
     }
 
+    public function findByName($name)
+    {
+       return $this->apartment->where('name','LIKE', '%' . $name . '%')->get();
+    }
+
     public function update($id , array $attribute)
     {
         $apartment = $this->apartment->find($id);
@@ -61,6 +66,12 @@ class ApartmentRepository {
         return $listApartment;
 
     }
+
+    public function getApartmentList()
+    {
+        return $this->apartment->All();
+    }
+
 
    
 }

@@ -14,4 +14,9 @@ class Apartment extends Model
     ];
     protected $primaryKey = 'id';
     protected $table = 'apartment';
+
+    public function Apartmentroom()
+    {
+        return $this->hasMany('App\Models\Apartmentroom', 'id');
+    }
 }

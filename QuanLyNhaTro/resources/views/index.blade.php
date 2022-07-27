@@ -1,7 +1,4 @@
-<?php
-
-use Illuminate\Support\Facades\Session; ?>
-<?php $user_name = Session::get('user_name'); ?>
+<?php $user_name = session('user_name'); ?>
 <!DOCTYPE html>
 <html>
 
@@ -16,8 +13,8 @@ use Illuminate\Support\Facades\Session; ?>
 <body>
 
     <div class="sidenav">
-        <a href="{{URL::to('/list-apartment')}}">Quản lý tòa nhà</a>
-        <a href="#">Quản lý phòng trọ</a>
+        <a href="{{route('apartment.list')}}">Quản lý tòa nhà</a>
+        <a href="{{route('room.list')}}">Quản lý phòng trọ</a>
         <a href="#">Quản lý tiền trọ hàng tháng</a>
         <a href="#">Thống kê</a>
     </div>
