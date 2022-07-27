@@ -48,4 +48,19 @@ class ApartmentRepository {
             return false;
         }
     }
+
+    public function findByNameAndAdress($name,$address){
+        $listApartment = $this->apartment->orderby('id','asc');
+        if(!empty($name)){
+            $listApartment = $listApartment->where('name','LIKE', '%' . $name . '%');
+        }
+        if(!empty($address)){
+            $listApartment = $listApartment->where('address','LIKE', '%' . $address . '%');
+        }
+        $listApartment = $listApartment->get();
+        return $listApartment;
+
+    }
+
+   
 }

@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Repositories\ApartmentRepository;
-use App\Models\Apartment;
 
 class ApartmentService {
 
@@ -16,17 +15,8 @@ class ApartmentService {
     }
 
     public function search($request){
-        $dataPost = $request;
-        $listApartment = Apartment::orderBy('id','asc');
-        if(!empty($dataPost['name'])){
-            $listApartment = $listApartment->where('name','LIKE', '%' . $dataPost['name'] . '%');
-        }
-        if(!empty($dataPost['address'])){
-            $listApartment = $listApartment->where('address','LIKE', '%' . $dataPost['address'] . '%');
-        }
-        $listApartment = $listApartment->get();
+        $listApartment = $this->apartmentRepository->findByNameAndAdress($request['name'],$request['address']);
         return $listApartment;
     }
-
 
 }

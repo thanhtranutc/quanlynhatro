@@ -3,7 +3,7 @@
 @section('content')
 <h1>{{__('Kết quả tìm kiếm')}}</h1>
 <div class="block-search">
-  <form action="{{URL::to('/search-apartment')}}" method="post">
+  <form action="{{route('apartment.search')}}" method="post">
     @csrf
     <label>Tên: </label></label><input name="name" type="text">
     <label>Địa chỉ: </label><input name="address" type="text">

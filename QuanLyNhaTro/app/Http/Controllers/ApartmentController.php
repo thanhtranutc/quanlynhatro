@@ -73,20 +73,15 @@ class ApartmentController extends Controller
     public function updateApartment($id, Request $request)
     {
         $image = $request->file('image');
+        $apartment = [
+            'name' => $request->name,
+            'address' => $request->address,
+        ];
         if ($image) {
-            $apartment = [
-                'name' => $request->name,
-                'address' => $request->address,
-                'image' => $image->getClientOriginalName(),
-            ];
             $storedPath = $image->move('img/apartment', $image->getClientOriginalName());
-        }else{
-            $apartment = [
-                'name' => $request->name,
-                'address' => $request->address,
-            ];
+            $apartment['image'] = $image->getClientOriginalName();
         }
-        $this->apartmentRepository->update($id,$apartment);
+        $this->apartmentRepository->update($id, $apartment);
         return Redirect::to('list-apartment');
     }
 }

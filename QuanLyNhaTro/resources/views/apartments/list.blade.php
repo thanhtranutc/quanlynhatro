@@ -3,7 +3,7 @@
 @section('content')
 <h1>{{__('Danh sách tòa nhà')}}</h1>
 <div class="block-search">
-  <form action="{{URL::to('/search-apartment')}}" method="post">
+  <form action="{{route('apartment.search')}}" method="post">
     @csrf
     <label>Tên: </label></label><input name="name" type="text">
     <label>Địa chỉ: </label><input name="address" type="text">
@@ -31,9 +31,9 @@
       </td>
       <td>
         <div class="container-btn">
-          <a class="btn-form" href="{{URL::to('/add-apartment')}}">{{__('Thêm')}}</a>
-          <a class="btn-form" href="{{URL::to('/edit-apartment'.$item->id)}}">{{__('Sửa')}}</a>
-          <a class="btn-form delete" onclick="return confirm('Bạn có muốn xóa không')" href="{{URL::to('/delete-apartment'.$item->id)}}">{{__('Xóa')}}</a>
+          <a class="btn-form" href="{{route('apartment.add')}}">{{__('Thêm')}}</a>
+          <a class="btn-form" href="{{route('apartment.edit',$item->id)}}">{{__('Sửa')}}</a>
+          <a class="btn-form delete" onclick="return confirm('Bạn có muốn xóa không')" href="{{route('apartment.delete',$item->id)}}">{{__('Xóa')}}</a>
         </div>
       </td>
     </tr>
