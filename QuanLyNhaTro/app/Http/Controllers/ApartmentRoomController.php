@@ -5,19 +5,27 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repositories\ApartmentroomRepository;
 use App\Repositories\ApartmentRepository;
+use App\Repositories\TenantcontractRepository;
+use App\Repositories\TenantRepository;
 use Illuminate\Support\Facades\Redirect;
 
 class ApartmentRoomController extends Controller
 {
     protected $apartmentroomRepository;
     protected $apartmentRepository;
+    protected $tenantcontractRepository;
+    protected $tenantRepository;
 
     public function __construct(
         ApartmentroomRepository $apartmentroomRepository,
-        ApartmentRepository $apartmentRepository
+        ApartmentRepository $apartmentRepository,
+        TenantcontractRepository $tenantcontractRepository,
+        TenantRepository $tenantRepository
     ) {
         $this->apartmentroomRepository = $apartmentroomRepository;
         $this->apartmentRepository = $apartmentRepository;
+        $this->tenantcontractRepository = $tenantcontractRepository;
+        $this->tenantRepository = $tenantRepository;
     }
 
     public function listRoom()
@@ -25,9 +33,18 @@ class ApartmentRoomController extends Controller
         $listRoom = $this->apartmentroomRepository->getAllPaginate();
         return view('apartment_room.list', ['listRoom' => $listRoom]);
     }
+
     public function viewRoom($id)
     {
+        $contractCurrent = $this->tenantcontractRepository->getContractByApartmentId($id);
+        if($contractCurrent){
+            $tenantCurrent = $this->tenantRepository->findById($contractCurrent->tenant_id);
+            return view('apartment_room.view',compact('tenantCurrent','id'));
+        }else{
+            return view('apartment_room.view',compact('id'));
+        }
     }
+
     public function addRoom()
     {
         $listApartment = $this->apartmentRepository->getApartmentList();
@@ -97,5 +114,38 @@ class ApartmentRoomController extends Controller
         }
         $result = $this->apartmentroomRepository->search($request->room_number, $idApartment);
         return view('apartment_room.resultsearch',compact('result')); 
+    }
+    
+    public function showFormAddContract($id)
+    {
+        return view('apartment_room.addcontract',compact('id'));
+    }
+    public function addContract(Request $request,$id)
+    {
+        $request->validate([
+            'phone' => 'required'
+        ]);
+        $newContract = [
+            'apartment_room_id' => $id,
+            'start_date' => $request->start,
+            'end_date' => $request->end,
+            'price' => 3000000,
+            'water_price' => 25000,
+            'electricity_price' => 4000,
+        ];
+        $checkTenant = $this->tenantRepository->findByPhone($request->phone);
+        if(empty($checkTenant)){
+            $newTenant = [
+                'name' => $request->name,
+                'phone' => $request->phone,
+                'email' => $request->email,
+            ];
+            $newTenant = $this->tenantRepository->create($newTenant);
+            $newContract['tenant_id'] = $newTenant->id;
+        }else{
+            $newContract['tenant_id'] = $checkTenant->id;
+        }
+        $this->tenantcontractRepository->create($newContract);
+        return Redirect::to('/list-room');
     }
 }

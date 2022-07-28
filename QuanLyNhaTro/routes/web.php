@@ -44,4 +44,6 @@ Route::group(['midderware' => ['auth']], function () {
   Route::get('/delete-room{id}', 'ApartmentRoomController@deleteRoom')->name('room.delete');
   Route::get('/edit-room{id}', 'ApartmentRoomController@editRoom')->name('room.edit');
   Route::post('/update-room{id}', 'ApartmentRoomController@updateRoom')->name('room.update');
+  Route::get('/new-contract{id}', 'ApartmentRoomController@showFormAddContract')->name('room.addcontract');
+  Route::post('/new-contract{id}', 'ApartmentRoomController@addContract')->name('room.savecontract');
 });
