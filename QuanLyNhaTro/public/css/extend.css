@@ -1,41 +1,75 @@
+
 body {
-    font-family: "Lato", sans-serif;
-  }
-  
+  font-family: "Lato", sans-serif;
+}
+.sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: antiquewhite;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav a {
+  padding: 6px 6px 6px 32px;
+  text-decoration: none;
+
+  color: brown;
+  display: block;
+  border: 0.5px solid;
+}
+
+.sidenav a:active {
+  background-color: aqua;
+}
+
+.sidenav a:hover {
+  color: black;
+}
+
+.main {
+  margin-left: 200px;
+  /* Same as the width of the sidenav */
+}
+#apartment {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#apartment td,
+#apartment th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#apartment tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#apartment tr:hover {
+  background-color: #ddd;
+}
+
+#apartment th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+
+
+@media screen and (max-height: 450px) {
   .sidenav {
-    height: 100%;
-    width: 200px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: antiquewhite;
-    overflow-x: hidden;
-    padding-top: 20px;
-  }
-  
-  .sidenav a {
-    padding: 6px 6px 6px 32px;
-    text-decoration: none;
-   
-    color: brown;
-    display: block;
-    border: 0.5px solid;
+    padding-top: 15px;
   }
 
-  .sidenav a:active{
-    background-color: aqua;
+  .sidenav a {
+    font-size: 18px;
   }
-  
-  .sidenav a:hover {
-    color: black;
-  }
-  
-  .main {
-    margin-left: 200px; /* Same as the width of the sidenav */
-  }
-  
-  @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
-  }
+}

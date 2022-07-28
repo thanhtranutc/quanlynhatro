@@ -1,31 +1,20 @@
+<?php $user_name = session('user_name'); ?>
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/extend.css">
+    <link rel="stylesheet" type="text/css" href="css/custom2.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="js/extend.js"></script>
 </head>
-<style>
-    .menu {
-        display: block;
-    }
-
-    .menu-item {
-        width: 200px;
-        margin: 10px;
-        float: right;
-    }
-    .menu-item.first{
-        text-align: right;
-        width: 50px !important;
-    }
-</style>
 
 <body>
 
     <div class="sidenav">
-        <a href="#">Quản lý tòa nhà</a>
-        <a href="#">Quản lý phòng trọ</a>
+        <a href="{{route('apartment.list')}}">Quản lý tòa nhà</a>
+        <a href="{{route('room.list')}}">Quản lý phòng trọ</a>
         <a href="#">Quản lý tiền trọ hàng tháng</a>
         <a href="#">Thống kê</a>
     </div>
@@ -39,9 +28,10 @@
             </div>
 
         </div>
-        @yield('content')
+        <div class="block-content">
+            @yield('content')
+        </div>
     </div>
-
 </body>
 
 </html>
