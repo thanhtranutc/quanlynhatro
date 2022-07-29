@@ -15,7 +15,7 @@
     <div class="sidenav">
         <a href="{{route('apartment.list')}}">Quản lý tòa nhà</a>
         <a href="{{route('room.list')}}">Quản lý phòng trọ</a>
-        <a href="#">Quản lý tiền trọ hàng tháng</a>
+        <a href="{{route('roomfee.list')}}">Quản lý tiền trọ hàng tháng</a>
         <a href="#">Thống kê</a>
     </div>
     <div class="main">

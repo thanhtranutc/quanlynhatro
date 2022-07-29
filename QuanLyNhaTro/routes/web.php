@@ -46,4 +46,12 @@ Route::group(['midderware' => ['auth']], function () {
   Route::post('/update-room{id}', 'ApartmentRoomController@updateRoom')->name('room.update');
   Route::get('/new-contract{id}', 'ApartmentRoomController@showFormAddContract')->name('room.addcontract');
   Route::post('/new-contract{id}', 'ApartmentRoomController@addContract')->name('room.savecontract');
+
+  //room_fee
+  Route::get('/list-roomfee', 'RoomfeeController@listRoom')->name('roomfee.list');
+  Route::get('/list-roomfee{id}', 'RoomfeeController@listReceipt')->name('receipt.list');
+  Route::get('/add-roomfee{id}', 'RoomfeeController@addReceipt')->name('receipt.add');
+  Route::post('/add-roomfee{id}', 'RoomfeeController@saveReceipt')->name('receipt.save');
+  Route::get('/edit-receipt{id}', 'RoomfeeController@editReceipt')->name('edit.receipt');
+  Route::post('/update-receipt{id}', 'RoomfeeController@updateReceipt')->name('update.receipt');
 });

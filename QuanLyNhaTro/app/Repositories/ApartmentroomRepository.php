@@ -16,7 +16,7 @@ class ApartmentroomRepository {
 
     public function getAll()
     {
-       return $this->apartmentroom->orderby('id','asc')->paginate(5);
+       return $this->apartmentroom->All();
     }
 
     public function create(array $attributes){
