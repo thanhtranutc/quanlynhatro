@@ -51,4 +51,7 @@ Route::group(['midderware' => ['auth']], function () {
   Route::get('/list-roomfee', 'RoomfeeController@listRoom')->name('roomfee.list');
   Route::get('/list-roomfee{id}', 'RoomfeeController@listReceipt')->name('receipt.list');
   Route::get('/add-roomfee{id}', 'RoomfeeController@addReceipt')->name('receipt.add');
+  Route::post('/add-roomfee{id}', 'RoomfeeController@saveReceipt')->name('receipt.save');
+  Route::get('/edit-receipt{id}', 'RoomfeeController@editReceipt')->name('edit.receipt');
+  Route::post('/update-receipt{id}', 'RoomfeeController@updateReceipt')->name('update.receipt');
 });

@@ -26,7 +26,7 @@
       <td>{{$item->total_paid}}</td>                                                       
       <td>
         <div class="container-btn">                                                       
-          <a class="btn-form" href="{{route('receipt.list',$item->id)}}">{{__('Sửa')}}</a>                                            
+          <a class="btn-form" href="{{route('edit.receipt',$item->id)}}">{{__('Sửa')}}</a>                                            
         </div>                     
       </td>                           
     </tr>                             

@@ -24,6 +24,14 @@ class TenantcontractRepository {
     public function create(array $attributes){
         return $this->tenant_contract->create($attributes);
     }
+
+    public function getContractByTime($time, $id){
+         $result = $this->tenant_contract->where('start_date','<',$time)
+         ->where('end_date','>',$time)
+         ->where('apartment_room_id',$id)
+         ->first();
+         return $result;
+    }
     
 
 

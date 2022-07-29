@@ -18,4 +18,7 @@ class Apartmentroom extends Model
     public function Apartment(){
         return $this->belongsTo('App\Models\Apartment','apartment_id');
     }
+    public function room_fee(){
+        return $this->hasMany('App\Models\Room_fee', 'id');
+    }
 }
