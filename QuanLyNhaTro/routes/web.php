@@ -54,4 +54,7 @@ Route::group(['midderware' => ['auth']], function () {
   Route::post('/add-roomfee{id}', 'RoomfeeController@saveReceipt')->name('receipt.save');
   Route::get('/edit-receipt{id}', 'RoomfeeController@editReceipt')->name('edit.receipt');
   Route::post('/update-receipt{id}', 'RoomfeeController@updateReceipt')->name('update.receipt');
+
+  //statistic
+  Route::get('/statistic', 'StatisticController@statistic')->name('statistic');
 });
