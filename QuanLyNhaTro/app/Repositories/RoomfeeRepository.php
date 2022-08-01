@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Room_fee;
+use Carbon\Carbon;
 
 class RoomfeeRepository {
 
@@ -41,6 +42,17 @@ class RoomfeeRepository {
         }else{
             return false;
         }
+    }
+
+    public function getRoomDebt()
+    {
+        return $this->room_fee->whereColumn('total_paid','<','total_price')->get();
+    }
+
+    public function getRoomDebtLastMonth(){
+        return $this->room_fee->whereColumn('total_paid','<','total_price')
+        ->whereMonth('charge_date',Carbon::now()->subMonth()->month)
+        ->get();
     }
 
 }
