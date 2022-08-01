@@ -57,4 +57,8 @@ Route::group(['midderware' => ['auth']], function () {
 
   //statistic
   Route::get('/statistic', 'StatisticController@statistic')->name('statistic');
+
+  //event
+  Route::post('/event/add-apartment', 'EventController@addApartment')->name('event.addapartment');
+  Route::post('/event/add-room', 'EventController@addApartmentRoom')->name('event.room');
 });
