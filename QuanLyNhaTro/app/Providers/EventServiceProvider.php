@@ -18,6 +18,18 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+
+        'App\Events\CreateApartment' => [
+            'App\Listeners\InsertApartmentToDB',
+        ],
+
+        'App\Events\CreateApartmentRoom' => [
+            'App\Listeners\InsertRoomToDB',
+        ],
+
+        'App\Events\SendMail' => [
+            'App\Listeners\SendMailNotifyDebt',
+        ],
     ];
 
     /**

@@ -2,11 +2,9 @@
 
 namespace App\Console\Commands;
 
-use App\Mail\NotificationDebt;
+use App\Events\SendMail;
 use Illuminate\Console\Command;
-use App\Repositories\RoomfeeRepository;
-use App\Repositories\TenantRepository;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Event;
 
 class SendMailCommand extends Command
 {
@@ -29,17 +27,9 @@ class SendMailCommand extends Command
      *
      * @return void
      */
-    protected $roomfeeRepository;
 
-    protected $tenantRepository;
-
-    public function __construct(
-        RoomfeeRepository $roomfeeRepository,
-        TenantRepository $tenantRepository
-        )
+    public function __construct()
     {
-        $this->roomfeeRepository =$roomfeeRepository;
-        $this->tenantRepository =$tenantRepository;
         parent::__construct();
     }
 
@@ -50,13 +40,8 @@ class SendMailCommand extends Command
      */
     public function handle()
     {
-         $listRoom = $this->roomfeeRepository->getRoomDebtLastMonth();
-         if($listRoom){
-            foreach($listRoom as $value){
-                $tenant = $this->tenantRepository->findById($value->tenant_id);
-                Mail::to($tenant->email)->send(new NotificationDebt($tenant));
-            }
-         }
+        Event::dispatch(new SendMail());
+        
 
         return 0;
     }
