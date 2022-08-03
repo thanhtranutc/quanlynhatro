@@ -5,7 +5,7 @@
     <h1>{{__('Thêm phòng trọ')}}</h1>
 </div>
 <div class="container">
-    <form action="{{route('event.room')}}" method="post" enctype="multipart/form-data">
+    <form action="{{route('room.save')}}" method="post" enctype="multipart/form-data">
         @csrf
         <label for="fname">Số phòng</label>
         @error('room_number')

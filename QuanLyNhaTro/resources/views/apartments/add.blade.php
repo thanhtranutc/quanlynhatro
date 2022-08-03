@@ -5,7 +5,7 @@
     <h1>{{__('Thêm tòa nhà')}}</h1>
 </div>
 <div class="container">
-    <form action="{{route('event.addapartment')}}" method="post" enctype="multipart/form-data">
+    <form action="{{route('apartment.save')}}" method="post" enctype="multipart/form-data">
         @csrf
         <label for="fname">Tên tòa nhà</label>
         @error('name')

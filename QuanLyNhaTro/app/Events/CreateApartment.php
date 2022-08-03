@@ -19,11 +19,11 @@ class CreateApartment
      *
      * @return void
      */
-    public $apartment;
+    
 
-    public function __construct($apartment)
+    public function __construct()
     {
-        $this->apartment = $apartment;
+        
     }
 
     /**

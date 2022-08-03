@@ -20,11 +20,10 @@ class CreateApartmentRoom
      * @return void
      */
 
-    public $room;
 
-    public function __construct($room)
+    public function __construct()
     {
-       $this->room = $room;
+     
     }
 
     /**

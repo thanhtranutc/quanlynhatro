@@ -7,6 +7,8 @@ use App\Services\ApartmentService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Event;
+use App\Events\CreateApartment;
 
 class ApartmentController extends Controller
 {
@@ -55,6 +57,7 @@ class ApartmentController extends Controller
             'image' => $imageName,
         ];
         $this->apartmentRepository->create($newApartment);
+        Event::dispatch(new CreateApartment());
         return Redirect::to('list-apartment');
     }
 

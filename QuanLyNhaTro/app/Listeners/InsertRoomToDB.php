@@ -5,7 +5,7 @@ namespace App\Listeners;
 use App\Events\CreateApartmentRoom;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
-use App\Repositories\ApartmentroomRepository;
+use App\Models\Apartmentroom; 
 
 class InsertRoomToDB implements ShouldQueue
 {
@@ -15,11 +15,11 @@ class InsertRoomToDB implements ShouldQueue
      * @return void
      */
 
-    protected $apartmentroomRepository;
+    protected $apartmentroom;
 
-    public function __construct(ApartmentroomRepository $apartmentroomRepository)
+    public function __construct( Apartmentroom $apartmentroom)
     {
-        $this->apartmentroomRepository = $apartmentroomRepository;
+        $this->apartmentroom = $apartmentroom;
     }
 
     /**
@@ -28,8 +28,8 @@ class InsertRoomToDB implements ShouldQueue
      * @param  \App\Events\CreateApartmentRoom  $event
      * @return void
      */
-    public function handle(CreateApartmentRoom $event)
+    public function handle()
     {
-        $this->apartmentroomRepository->create($event->room);
+        activity()->causedBy(auth()->user())->performedOn($this->apartmentroom)->log('Đã thêm 1 phòng trọ');
     }
 }

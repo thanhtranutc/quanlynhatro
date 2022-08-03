@@ -8,6 +8,8 @@ use App\Repositories\ApartmentRepository;
 use App\Repositories\TenantcontractRepository;
 use App\Repositories\TenantRepository;
 use Illuminate\Support\Facades\Redirect;
+use App\Events\CreateApartmentRoom;
+use Illuminate\Support\Facades\Event;
 
 class ApartmentRoomController extends Controller
 {
@@ -70,6 +72,7 @@ class ApartmentRoomController extends Controller
             'room_image' => $imageName,
         ];
         $this->apartmentroomRepository->create($newRoom);
+        Event::dispatch(new CreateApartmentRoom());
         return Redirect::to('list-room');
     }
     public function deleteRoom($id)

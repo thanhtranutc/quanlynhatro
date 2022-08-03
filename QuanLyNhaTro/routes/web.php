@@ -30,7 +30,7 @@ Route::group(['midderware' => ['auth']], function () {
   Route::get('/list-apartment', 'ApartmentController@listApartment')->name('apartment.list');
   Route::get('/add-apartment', 'ApartmentController@showAddApartmentForm')->name('apartment.add');
   Route::post('/search-apartment', 'ApartmentController@search')->name('apartment.search');
-  Route::post('/save-apartment', 'ApartmentController@save');
+  Route::post('/save-apartment', 'ApartmentController@save')->name('apartment.save');
   Route::get('/delete-apartment{id}', 'ApartmentController@deleteApartment')->name('apartment.delete');
   Route::get('/edit-apartment{id}', 'ApartmentController@editApartment')->name('apartment.edit');
   Route::post('/update-apartment{id}', 'ApartmentController@updateApartment')->name('apartment.update');
@@ -58,7 +58,4 @@ Route::group(['midderware' => ['auth']], function () {
   //statistic
   Route::get('/statistic', 'StatisticController@statistic')->name('statistic');
 
-  //event
-  Route::post('/event/add-apartment', 'EventController@addApartment')->name('event.addapartment');
-  Route::post('/event/add-room', 'EventController@addApartmentRoom')->name('event.room');
 });
