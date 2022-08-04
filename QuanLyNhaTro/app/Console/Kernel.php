@@ -20,7 +20,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->command('roomdebt:sendmail')->monthlyOn(10, '16:08');
+        // $schedule->command('roomdebt:sendmail')->monthlyOn(10, '16:08');
+        $schedule->command('roomdebt:sendmail')->everyMinute();
     }
 
     /**
