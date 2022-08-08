@@ -7,7 +7,9 @@
     <link rel="stylesheet" type="text/css" href="css/extend.css">
     <link rel="stylesheet" type="text/css" href="css/custom2.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-    <script src="js/extend.js"></script>
+    <script defer src="js/extend.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
@@ -33,5 +35,4 @@
         </div>
     </div>
 </body>
-
 </html>

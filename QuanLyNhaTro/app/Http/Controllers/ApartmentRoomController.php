@@ -121,7 +121,8 @@ class ApartmentRoomController extends Controller
     
     public function showFormAddContract($id)
     {
-        return view('apartment_room.addcontract',compact('id'));
+        $listTenant = $this->tenantRepository->getAll();
+        return view('apartment_room.addcontract',compact('id','listTenant'));
     }
     public function addContract(Request $request,$id)
     {
@@ -132,9 +133,11 @@ class ApartmentRoomController extends Controller
             'apartment_room_id' => $id,
             'start_date' => $request->start,
             'end_date' => $request->end,
-            'price' => 3000000,
-            'water_price' => 25000,
-            'electricity_price' => 4000,
+            'price' => $request->price,
+            'water_price' => $request->price_water,
+            'electricity_price' => $request->price_electricity,
+            'note' => $request->note,
+            'electricity_pay_type' => $request->electricity_pay_type,
         ];
         $checkTenant = $this->tenantRepository->findByPhone($request->phone);
         if(empty($checkTenant)){
