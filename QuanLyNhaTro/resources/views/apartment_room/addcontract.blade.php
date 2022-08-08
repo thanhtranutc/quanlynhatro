@@ -18,12 +18,18 @@
         <select class="input-custom" name="electricity_pay_type">
             <option value="1">Trả theo đầu người</option>
             <option value="2">Trả theo phòng</option>
-            <option value="2">Trả theo số điện sử dụng</option>
+            <option value="3">Trả theo số điện sử dụng</option>
         </select><br>
         <label for="lname">Giá điện</label>
         <input class="input-custom" type="text" id="lname" name="price_water" placeholder="Nhập...">
         <label for="lname">Giá nước</label>
         <input class="input-custom" type="text" id="lname" name="price_electricity" placeholder="Nhập...">
+        <label for="lname">Cách thức trả tiền nước</label>
+        <select class="input-custom" name="water_pay_type">
+            <option value="1">Trả theo đầu người</option>
+            <option value="2">Trả theo phòng</option>
+            <option value="3">Trả theo số nước sử dụng</option>
+        </select><br>
         <label for="lname">Thời gian bắt đầu</label>
         <input class="input-custom" type="date" id="lname" name="start" placeholder="Nhập...">
         <label for="lname">Thời gian kết thúc</label>

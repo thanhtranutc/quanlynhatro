@@ -138,6 +138,7 @@ class ApartmentRoomController extends Controller
             'electricity_price' => $request->price_electricity,
             'note' => $request->note,
             'electricity_pay_type' => $request->electricity_pay_type,
+            'water_pay_type' => $request->water_pay_type,
         ];
         $checkTenant = $this->tenantRepository->findByPhone($request->phone);
         if(empty($checkTenant)){
