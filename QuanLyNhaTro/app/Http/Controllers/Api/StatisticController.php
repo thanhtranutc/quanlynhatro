@@ -4,24 +4,23 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Repositories\RoomfeeRepository;
+use App\Services\RoomfeeService;
 
 class StatisticController extends Controller
 {
-    public function __construct(RoomfeeRepository $roomfeeRepository)
+    protected $roomfeeService;
+
+    public function __construct(
+        RoomfeeService $roomfeeService
+        )
     {
-        $this->roomfeeRepository = $roomfeeRepository;
+        $this->roomfeeService = $roomfeeService;
     }
 
     public function index(){
-        $totalPrice = [0,0,0,0,0,0,0,0,0,0,0,0];
-        $month = $this->roomfeeRepository->getMonthHasTurnover();
-        $totalTurnover = $this->roomfeeRepository->getTotalPriceByMonth();
-
-        foreach($month as $i=> $value){
-            --$value;
-            $totalPrice[$value] = $totalTurnover[$i];
-        }
-        return response()->json($totalPrice);
+        $totalDebt = $this->roomfeeService->getTotalDebtByMonth();
+        $totalPrice = $this->roomfeeService->getTotalPriceByMonth();
+        return response()->json(['totalPrice'=>$totalPrice,'totalDebt'=>$totalDebt]);
     }
+    
 }
