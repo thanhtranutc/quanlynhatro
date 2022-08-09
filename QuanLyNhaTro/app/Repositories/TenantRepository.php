@@ -27,6 +27,11 @@ class TenantRepository {
     public function create(array $attributes){
         return $this->tenant->create($attributes);
     }
+
+    public function getAll()
+    {
+        return $this->tenant->All();
+    }
     
 
 

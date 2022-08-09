@@ -26,7 +26,7 @@ Route::get('/reset-password/{token}', 'HomeController@showFormReset')->name('res
 Route::post('/forgetpassword', 'HomeController@submitForgetPassword');
 Route::post('/update-password', 'HomeController@updatePassword');
 
-Route::group(['midderware' => ['auth']], function () {
+Route::group(['middleware' => ['auth']], function () {
   Route::get('/list-apartment', 'ApartmentController@listApartment')->name('apartment.list');
   Route::get('/add-apartment', 'ApartmentController@showAddApartmentForm')->name('apartment.add');
   Route::post('/search-apartment', 'ApartmentController@search')->name('apartment.search');

@@ -21,6 +21,9 @@
     </tr>
     @endforeach
   </table>
-
+  <canvas id="myChart" style="width: 900px !important; height:500px !important; margin: auto;"></canvas>
 </div>
+<script src="js/app.js"></script>
 @endsection
+
+

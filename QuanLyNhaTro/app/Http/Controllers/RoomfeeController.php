@@ -32,12 +32,14 @@ class RoomfeeController extends Controller
     public function listReceipt($id)
     {
         $listReceipt = $this->roomfeeRepository->findByApartmentId($id);
-        return view('room_fee.list_receipt', compact('listReceipt'));
+        $contractCurrent = $this->tenantcontractRepository->getContractByApartmentId($id);
+        return view('room_fee.list_receipt', compact('listReceipt','id','contractCurrent'));
     }
 
     public function addReceipt($id)
     {
-        return view('room_fee.add', compact('id'));
+        $contractCurrent = $this->tenantcontractRepository->getContractByApartmentId($id);
+        return view('room_fee.add', compact('id','contractCurrent'));
     }
 
     public function saveReceipt(Request $request, $id)
@@ -56,7 +58,8 @@ class RoomfeeController extends Controller
             'total_price' => $request->total,
             'total_paid' => $request->total_price,
             'charge_date' => $request->charge_date,
-            'apartment_room_id' => $id
+            'apartment_room_id' => $id,
+            'tenant_contract_id' => $request->tenant_contract_id,
         ];
         $contractCurrent = $this->tenantcontractRepository->getContractByTime($request->charge_date, $id);
         if ($contractCurrent) {
@@ -94,4 +97,5 @@ class RoomfeeController extends Controller
         }
         return redirect()->back();
     }
+
 }

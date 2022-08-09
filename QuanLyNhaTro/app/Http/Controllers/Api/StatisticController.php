@@ -1,31 +1,26 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Repositories\RoomfeeRepository;
 use App\Services\RoomfeeService;
 
 class StatisticController extends Controller
 {
-    protected $roomfeeRepository;
-
     protected $roomfeeService;
 
     public function __construct(
-        RoomfeeRepository $roomfeeRepository,
         RoomfeeService $roomfeeService
         )
     {
-        $this->roomfeeRepository = $roomfeeRepository;
         $this->roomfeeService = $roomfeeService;
     }
 
-    public function statistic()
-    {
+    public function index(){
         $totalDebt = $this->roomfeeService->getTotalDebtByMonth();
         $totalPrice = $this->roomfeeService->getTotalPriceByMonth();
-        $listRoom = $this->roomfeeRepository->getRoomDebt();
-        return view('statistic.view',compact('listRoom','totalPrice','totalDebt'));
+        return response()->json(['totalPrice'=>$totalPrice,'totalDebt'=>$totalDebt]);
     }
+    
 }
