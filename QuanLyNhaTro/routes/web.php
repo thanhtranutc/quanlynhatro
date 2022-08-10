@@ -57,5 +57,12 @@ Route::group(['middleware' => ['auth']], function () {
 
   //statistic
   Route::get('/statistic', 'StatisticController@statistic')->name('statistic');
-
+  //admin 
+  Route::get('/user', 'UserController@index')->name('admin.user');  //user
+  Route::get('/monthly-cost', 'MonthlyCostController@index')->name('admin.monthlycost');  // monthly_costs
+  Route::get('/add-monthlycost', 'MonthlyCostController@add')->name('admin.monthlycost.add');  // monthly_costs
+  Route::post('/save-monthlycost', 'MonthlyCostController@save')->name('admin.monthlycost.save');  // monthly_costs
+  Route::get('/delete-monthlycost{id}', 'MonthlyCostController@delete')->name('admin.monthlycost.delete');  // monthly_costs
+  Route::get('/edit-monthlycost{id}', 'MonthlyCostController@edit')->name('admin.monthlycost.edit');  // monthly_costs
+  Route::post('/save-monthlycost{id}', 'MonthlyCostController@update')->name('admin.monthlycost.update');  // monthly_costs
 });

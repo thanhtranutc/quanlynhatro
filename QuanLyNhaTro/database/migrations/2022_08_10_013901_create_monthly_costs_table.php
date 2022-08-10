@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColumnToRoomFeeTable extends Migration
+class CreateMonthlyCostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddColumnToRoomFeeTable extends Migration
      */
     public function up()
     {
-        Schema::table('room_fee', function (Blueprint $table) {
-            $table->foreign('tenant_contract_id')->references('id')->on('tenant_contracts')->onDelete('cascade');
+        Schema::create('monthly_costs', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
         });
     }
 
@@ -25,8 +26,6 @@ class AddColumnToRoomFeeTable extends Migration
      */
     public function down()
     {
-        Schema::table('room_fee', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('monthly_costs');
     }
 }

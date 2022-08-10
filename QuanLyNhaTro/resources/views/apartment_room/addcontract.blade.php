@@ -44,6 +44,29 @@
             <label for="lname">email</label>
             <input class="input-custom" type="text" id="lname" name="email" placeholder="Nhập...">
         </div>
+        <div id="drop-down" name="drop-down">
+            <label for="travel">Tiền phụ phí</label>
+            <select id="travel" onChange=showHide() name="option_monthly_cost">
+                <option value="1">Có</option>
+                <option value="0" selected>Không</option>
+            </select>
+            <div name="hidden-panel" style="display:none;" id="hidden-panel">
+                <label for="price">Loại phụ phí: </label>
+                <select name="monthly_cost_type">
+                    @foreach($listMonthlyCost as $monthlycost)
+                    <option value="{{$monthlycost->id}}">{{$monthlycost->name}}</option>
+                    @endforeach
+                </select>
+                <label for="price">Phương thức trả tiền: </label>
+                <select name="monthly_cost_pay_type">
+                    <option value="1">Trả theo đầu người</option>
+                    <option value="0" selected>Trả theo phòng</option>
+                </select>
+                <label for="price">Nhập số tiền: </label>
+                <input type="text" id="price" name="price_monthly_cost" />
+            </div>
+        </div>
+
         <input class="input-custom" type="submit" value="Xác nhận">
     </form>
 </div>
@@ -53,5 +76,14 @@
             console.log('adasd');
         });
     });
+
+    function showHide() {
+        let travelhistory = document.getElementById('travel')
+        if (travelhistory.value == 1) {
+            document.getElementById('hidden-panel').style.display = 'block'
+        } else {
+            document.getElementById('hidden-panel').style.display = 'none'
+        }
+    }
 </script>
 @endsection

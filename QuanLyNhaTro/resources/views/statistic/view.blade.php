@@ -14,7 +14,7 @@
     </tr>
     @foreach($listRoom as $item)
     <tr>
-      <td>{{$item->Apartmentroom['room_number']}}</td>
+      <td>{{$item->apartmentroom['room_number']}}</td>
       <td>{{formatMoney($item->total_price-$item->total_paid)}}</td>
       <td>{{$item->Tenant['name']}}</td>
       <td>{{formatMonth($item->charge_date)}}</td>

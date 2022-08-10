@@ -65,4 +65,10 @@ class ApartmentroomRepository {
         return $this->apartmentroom->orderby('id','asc')->paginate(5);
     }
 
+    public function getCountRoomByApartmentId($id)
+    {
+       $listRoom = $this->apartmentroom->where('apartment_id',$id)->get();
+       return count($listRoom);
+    }
+
 }

@@ -72,6 +72,9 @@ class ApartmentRepository {
         return $this->apartment->All();
     }
 
+    public function getApartmentByUserId($id)
+    {
+        return $this->apartment->where('user_id',$id)->get();
+    }
 
-   
 }

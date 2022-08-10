@@ -44,4 +44,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function room(){
+        return $this->hasManyThrough('App\Models\Apartmentroom','App\Models\Apartment','user_id','apartment_id','id','id');
+    }
+
+    public function apartment(){
+        return $this->hasMany('App\Models\Apartment','user_id');
+    }
+
 }
