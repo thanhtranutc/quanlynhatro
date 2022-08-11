@@ -2,7 +2,7 @@
 
 @section('content')
 <h2>{{__('Thông tin người thuê phòng')}}</h2>
-<a class="btn-form" href="{{route('room.addcontract',$id)}}">{{__('Thêm hợp đồng mới')}}</a>
+<a class="btn-form" href="{{route('room.addcontract',$id)}}"  @if(isset($tenantCurrent)) hidden @endif>{{__('Thêm hợp đồng mới')}}</a>
 <div class="container">
     <?php if (isset($tenantCurrent)) { ?>
         <div style="text-align:center">

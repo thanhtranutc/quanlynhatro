@@ -7,6 +7,8 @@ use App\Repositories\ApartmentroomRepository;
 use App\Repositories\ApartmentRepository;
 use App\Repositories\TenantcontractRepository;
 use App\Repositories\TenantRepository;
+use App\Repositories\MonthlycostRepository;
+use App\Repositories\ContractmonthlycostRepository;
 use Illuminate\Support\Facades\Redirect;
 use App\Events\CreateApartmentRoom;
 use Illuminate\Support\Facades\Event;
@@ -17,17 +19,23 @@ class ApartmentRoomController extends Controller
     protected $apartmentRepository;
     protected $tenantcontractRepository;
     protected $tenantRepository;
+    protected $monthlycostRepository;
+    protected $contractmonthlycostRepository;
 
     public function __construct(
         ApartmentroomRepository $apartmentroomRepository,
         ApartmentRepository $apartmentRepository,
         TenantcontractRepository $tenantcontractRepository,
-        TenantRepository $tenantRepository
+        TenantRepository $tenantRepository,
+        MonthlycostRepository $monthlycostRepository,
+        ContractmonthlycostRepository $contractmonthlycostRepository
     ) {
         $this->apartmentroomRepository = $apartmentroomRepository;
         $this->apartmentRepository = $apartmentRepository;
         $this->tenantcontractRepository = $tenantcontractRepository;
         $this->tenantRepository = $tenantRepository;
+        $this->monthlycostRepository = $monthlycostRepository;
+        $this->contractmonthlycostRepository = $contractmonthlycostRepository;
     }
 
     public function listRoom()
@@ -121,7 +129,9 @@ class ApartmentRoomController extends Controller
     
     public function showFormAddContract($id)
     {
-        return view('apartment_room.addcontract',compact('id'));
+        $listTenant = $this->tenantRepository->getAll();
+        $listMonthlyCost = $this->monthlycostRepository->getAll();
+        return view('apartment_room.addcontract',compact('id','listTenant','listMonthlyCost'));
     }
     public function addContract(Request $request,$id)
     {
@@ -132,9 +142,12 @@ class ApartmentRoomController extends Controller
             'apartment_room_id' => $id,
             'start_date' => $request->start,
             'end_date' => $request->end,
-            'price' => 3000000,
-            'water_price' => 25000,
-            'electricity_price' => 4000,
+            'price' => $request->price,
+            'water_price' => $request->price_water,
+            'electricity_price' => $request->price_electricity,
+            'note' => $request->note,
+            'electricity_pay_type' => $request->electricity_pay_type,
+            'water_pay_type' => $request->water_pay_type,
         ];
         $checkTenant = $this->tenantRepository->findByPhone($request->phone);
         if(empty($checkTenant)){
@@ -148,7 +161,16 @@ class ApartmentRoomController extends Controller
         }else{
             $newContract['tenant_id'] = $checkTenant->id;
         }
-        $this->tenantcontractRepository->create($newContract);
+        $tenantContract = $this->tenantcontractRepository->create($newContract);
+        if($request->option_monthly_cost == 1){
+            $newMonthlyCost = [
+                  'tenant_contract_id'=> $tenantContract->id,
+                  'monthly_costs_id'=>$request->monthly_cost_type,
+                  'pay_type'=> $request->monthly_cost_pay_type,
+                  'price'=> $request->price_monthly_cost,
+            ];  
+            $this->contractmonthlycostRepository->create($newMonthlyCost);      
+        }
         return Redirect::to('/list-room');
     }
 }

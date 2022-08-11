@@ -121,3 +121,9 @@ input[type=submit]:hover {
     display: table;
     clear: both;
 }
+.btn-add{
+    background-color: antiquewhite;
+    border-radius: 5px;
+    border: 1px solid;
+    font-size: larger;
+}

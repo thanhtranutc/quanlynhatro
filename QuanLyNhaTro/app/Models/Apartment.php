@@ -20,4 +20,8 @@ class Apartment extends Model
     {
         return $this->hasMany('App\Models\Apartmentroom', 'id');
     }
+
+    public function User(){
+        return $this->belongsTo('App\Models\User','user_id');
+    }
 }

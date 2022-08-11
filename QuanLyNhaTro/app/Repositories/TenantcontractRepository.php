@@ -16,7 +16,7 @@ class TenantcontractRepository {
     
     public function getContractByApartmentId($id)
     {
-        $contract = $this->tenant_contract->whereMonth('end_date','>',date('m'))
+        $contract = $this->tenant_contract->whereMonth('end_date','>=',date('m'))
         ->where('apartment_room_id',$id)->first();
         return $contract;
     }

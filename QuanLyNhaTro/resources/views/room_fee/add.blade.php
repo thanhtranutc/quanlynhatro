@@ -12,6 +12,10 @@
         @csrf
         <label for="fname">Phòng</label>
         <input class="input-custom" type="text" disabled value="{{$id}}" id="fname" name="apartment_room_id" placeholder="Nhập tên">
+        <label for="fname">Mã hợp đồng</label>
+        <input class="input-custom" type="text" disabled value="{{$contractCurrent->id}}" id="fname">
+        <input class="input-custom" type="text" hidden value="{{$contractCurrent->id}}" id="fname" name="tenant_contract_id">
+
         <label for="lname">Số điện</label>
         @error('electricity_number')
         <ul>

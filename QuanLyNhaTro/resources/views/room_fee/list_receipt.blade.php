@@ -2,7 +2,9 @@
 
 @section('content')
 <h1>{{__('Danh sách hóa đơn')}}</h1>
-<a class="btn-form" href="{{route('receipt.add',$listReceipt[0]->id)}}">{{__('Thêm')}}</a>
+<a <?php if (!isset($contractCurrent)) {
+      echo 'style="display: none;"';
+    } ?> class="btn-form" href="{{route('receipt.add',$id)}}">{{__('Thêm')}}</a>
 <div>
   <table id="apartment">
     <tr>
@@ -13,25 +15,27 @@
       <th>Tháng</th>
       <th>Tổng tiền</th>
       <th>Đã trả</th>
-      <th></th>                                                                              
+      <th></th>
     </tr>
-    @foreach($listReceipt as $item)                                    
+    @if(isset($listReceipt))
+    @foreach($listReceipt as $item)
     <tr>
-      <td>{{$item->apartment_room_id}}</td>                      
-      <td>{{$item->tenant['name']}}</td>            
-      <td>{{$item->water_number}}</td>             
-      <td>{{$item->electricity_number}}</td>          
-      <td>{{formatMonth($item->charge_date)}}</td>                               
-      <td>{{$item->total_price}}</td>               
-      <td>{{$item->total_paid}}</td>                                                       
+      <td>{{$item->apartment_room_id}}</td>
+      <td>{{$item->tenant['name']}}</td>
+      <td>{{$item->water_number}}</td>
+      <td>{{$item->electricity_number}}</td>
+      <td>{{formatMonth($item->charge_date)}}</td>
+      <td>{{$item->total_price}}</td>
+      <td>{{$item->total_paid}}</td>
       <td>
-        <div class="container-btn">                                                       
-          <a class="btn-form" href="{{route('edit.receipt',$item->id)}}">{{__('Sửa')}}</a>                                            
-        </div>                     
-      </td>                           
-    </tr>                             
-    @endforeach                        
-  </table>                              
-                                        
+        <div class="container-btn">
+          <a class="btn-form" href="{{route('edit.receipt',$item->id)}}">{{__('Sửa')}}</a>
+        </div>
+      </td>
+    </tr>
+    @endforeach
+    @endif
+  </table>
+
 </div>
 @endsection

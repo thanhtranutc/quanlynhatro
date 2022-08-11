@@ -28,5 +28,15 @@ class UserRepository {
         return $user->update($password);
     }
 
+    public function getAll()
+    {
+       return $this->user->All();
+    }
+
+    public function getAllPaginate()
+    {
+        return $this->user->orderBy('id','asc')->paginate(2);
+    }
+
 
 }
