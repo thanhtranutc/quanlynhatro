@@ -56,7 +56,8 @@ Route::group(['middleware' => ['auth']], function () {
   Route::post('/update-receipt{id}', 'RoomfeeController@updateReceipt')->name('update.receipt');
 
   //statistic
-  Route::get('/statistic', 'StatisticController@statistic')->name('statistic');
+  Route::get('/statistics', 'StatisticController@statistic')->name('statistic');
+  Route::get('statistic', 'StatisticController@statisticUser')->name('user.statistic');
   //admin 
   Route::get('/user', 'UserController@index')->name('admin.user');  //user
   Route::get('/monthly-cost', 'MonthlyCostController@index')->name('admin.monthlycost');  // monthly_costs
@@ -65,4 +66,8 @@ Route::group(['middleware' => ['auth']], function () {
   Route::get('/delete-monthlycost{id}', 'MonthlyCostController@delete')->name('admin.monthlycost.delete');  // monthly_costs
   Route::get('/edit-monthlycost{id}', 'MonthlyCostController@edit')->name('admin.monthlycost.edit');  // monthly_costs
   Route::post('/save-monthlycost{id}', 'MonthlyCostController@update')->name('admin.monthlycost.update');  // monthly_costs
+});
+
+Route::prefix('api')->middleware('auth')->group(function () {
+  Route::get('/user/statistics', 'Api\StatisticController@getStatisticByUser')->name('api.statistic');
 });

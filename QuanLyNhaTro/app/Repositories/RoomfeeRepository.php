@@ -94,5 +94,25 @@ class RoomfeeRepository {
          return $totalDebt;
     }
 
+    public function getTotalPriceByApartmentId($id)
+    {
+        $month = $this->room_fee->selectRaw('Month(charge_date) as month,sum(total_price) as total')
+        ->whereYear('charge_date',date('Y'))
+        ->whereIn('apartment_room_id',$id)
+        ->groupBy(DB::Raw('Month(charge_date)'))
+        ->pluck('total','month');
+        return $month;
+    }
+
+    public function getTotalDebtByApartmentId($id)
+    {
+        $month = $this->room_fee->selectRaw('Month(charge_date) as month,sum(total_price - total_paid) as total')
+        ->whereYear('charge_date',date('Y'))
+        ->whereIn('apartment_room_id',$id)
+        ->whereColumn('total_paid','<','total_price')
+        ->groupBy(DB::Raw('Month(charge_date)'))
+        ->pluck('total','month');
+        return $month;
+    }
 
 }

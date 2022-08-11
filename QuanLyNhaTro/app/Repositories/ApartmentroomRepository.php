@@ -71,4 +71,9 @@ class ApartmentroomRepository {
        return count($listRoom);
     }
 
+    public function getListRoomByListApartment($list)
+    {
+        return $this->apartmentroom->whereIn('apartment_id',$list)->get();
+    }
+
 }

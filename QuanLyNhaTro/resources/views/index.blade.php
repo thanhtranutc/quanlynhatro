@@ -18,9 +18,10 @@
         <a href="{{route('apartment.list')}}">Quản lý tòa nhà</a>
         <a href="{{route('room.list')}}">Quản lý phòng trọ</a>
         <a href="{{route('roomfee.list')}}">Quản lý tiền trọ hàng tháng</a>
-        <a href="{{route('statistic')}}">Thống kê</a>
+        <a href="{{route('statistic')}}">Thống kê tổng hợp</a>
         <a href="{{route('admin.user')}}">Quản lý user</a>
         <a href="{{route('admin.monthlycost')}}">Quản lý phụ phí</a>
+        <a href="{{route('user.statistic')}}">Thống kê</a>
     </div>
     <div class="main">
         <div class="menu">

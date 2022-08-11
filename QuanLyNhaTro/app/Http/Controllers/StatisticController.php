@@ -28,4 +28,9 @@ class StatisticController extends Controller
         $listRoom = $this->roomfeeRepository->getRoomDebt();
         return view('statistic.view',compact('listRoom','totalPrice','totalDebt'));
     }
+
+    public function statisticUser()
+    {
+        return view('user.statistic');
+    }
 }
